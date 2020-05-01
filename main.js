@@ -24,6 +24,25 @@ const buildForm = (event) => {
     `;
   }
   printToDom('#form', domString);
+  document.querySelector('#sortStudent').addEventListener('click', buildCard)
+};
+
+const buildCard = (event) => {
+  const buttonId = event.target.id;
+  let domString = '';
+
+  if (buttonId === 'sortStudent') {
+    domString += `
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+      <h5 class="card-title">this will be a student name</h5>
+      <p class="card-text">This will be a house</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+    `;
+  }
+  printToDom('#studentCards', domString);
 };
 
 const clickEvents = () => {
