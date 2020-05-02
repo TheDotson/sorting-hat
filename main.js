@@ -32,10 +32,13 @@ const studentObjectMaker = () => {
   let tempStudent = {
     name: '',
     house: '',
-    expelled: false,
+    // expelled: false,
   }
 
-  tempStudent.name = document.getElementById('name').value
+  if (document.getElementById('name').value === "") {
+    alert("Don't be shy, fill out your name.")
+  } else {
+    tempStudent.name = document.getElementById('name').value
 
   const houseSorting = () => {
     let house = 0;
@@ -57,6 +60,7 @@ const studentObjectMaker = () => {
   }
   houseSorting();
   students.push(tempStudent);
+  }
 };
 
 const studentCardBuilder = (arr) => {
