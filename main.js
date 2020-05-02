@@ -37,6 +37,7 @@ const studentObjectMaker = () => {
 
   const houseSorting = () => {
     let house = 0;
+    house = Math.floor(Math.random() * 4) + 1;
 
     if (house === 1) {
       console.log('Gryffindor')
