@@ -1,4 +1,4 @@
-const newStudent = [];
+const students = [];
 
 const house = ['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'];
 
@@ -16,7 +16,7 @@ const buildForm = (event) => {
     <form>
       <div class="form-group">
         <label for="exampleInputName">What is the name of the First Year?</label>
-        <input type="name" class="form-control form-control-sm" id="exampleInputName" aria-describedby="nameHelp" placeholder="Enter Name">
+        <input type="name" class="form-control form-control-sm" id="name" aria-describedby="nameHelp" placeholder="Enter Name">
         <small id="nameHelp" class="form-text text-muted">Please only include your legal First and Last name.</small>
       </div>
       <button id="sortStudent" type="submit" class="btn btn-secondary btn-sm">Submit</button>
@@ -24,29 +24,62 @@ const buildForm = (event) => {
     `;
   }
   printToDom('#form', domString);
-  document.querySelector('#sortStudent').addEventListener('click', buildCard)
+  document.querySelector('#sortStudent').addEventListener('click', enrollmentEvent)
 };
 
-const buildCard = (event) => {
-  const buttonId = event.target.id;
-  let domString = '';
+const studentObjectMaker = () => {
+  let tempStudent = {
+    name: '',
+    house: '',
+  }
 
-  if (buttonId === 'sortStudent') {
+  tempStudent.name = document.getElementById('name').value
+
+  const houseSorting = () => {
+    let house = 0;
+
+    if (house === 1) {
+      console.log('Gryffindor')
+      tempStudent.house = 'Gryffindor'
+    } else if (house === 2) {
+      console.log('Hufflepuff')
+      tempStudent.house = 'Hufflepuff'
+    } else if (house === 3) {
+      console.log('Ravenclaw')
+      tempStudent.house = 'Ravenclaw'
+    } else {
+      console.log('Slytherin')
+      tempStudent.house = 'Slytherin'
+    }
+  }
+  houseSorting();
+  students.push(tempStudent);
+};
+
+const studentCardBuilder = (arr) => {
+  domString = '';
+
+  for (let i = 0; i < arr.length; i++) {
     domString += `
     <div class="card" style="width: 18rem;">
       <div class="card-body">
-      <h5 class="card-title">this will be a student name</h5>
-      <p class="card-text">This will be a house</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <h5 class="card-title">${arr[i].name}</h5>
+      <p class="card-text">${arr[i].house}</p>
+      <a href="#" class="btn btn-primary">Expell Student</a>
       </div>
     </div>
     `;
   }
-  printToDom('#studentCards', domString);
-};
+  printToDom('#studentCards', domString)
+}
 
 const clickEvents = () => {
   document.querySelector('#createForm').addEventListener('click', buildForm)
+}
+
+const enrollmentEvent = (event) => {
+  studentObjectMaker()
+  studentCardBuilder(students)
 }
 
 const init = () => {
