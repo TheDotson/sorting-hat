@@ -1,4 +1,5 @@
 const students = [];
+const deathEaters = [];
 
 const house = ['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'];
 
@@ -15,11 +16,11 @@ const buildForm = (event) => {
     domString += `
     <form>
       <div class="form-group">
-        <label for="exampleInputName">What is the name of the First Year?</label>
+        <label for="exampleInputName" class="label">What is the name of the First Year?</label>
         <input type="name" class="form-control form-control-sm" id="name" aria-describedby="nameHelp" placeholder="Enter Name">
-        <small id="nameHelp" class="form-text text-muted">Please only include your legal First and Last name.</small>
+        <small id="nameHelp" class="form-text">Please only include your legal First and Last name.</small>
       </div>
-      <button id="sortStudent" type="submit" class="btn btn-secondary btn-sm">Submit</button>
+      <button id="sortStudent" type="submit" class="btn btn-primary btn-sm">Submit</button>
     </form>
     `;
   }
@@ -31,6 +32,7 @@ const studentObjectMaker = () => {
   let tempStudent = {
     name: '',
     house: '',
+    expelled: false,
   }
 
   tempStudent.name = document.getElementById('name').value
@@ -63,16 +65,29 @@ const studentCardBuilder = (arr) => {
   for (let i = 0; i < arr.length; i++) {
     domString += `
     <div class="card" style="width: 18rem;">
-      <div class="card-body">
+      <div class="card-body" id="${arr[i].house}">
       <h5 class="card-title">${arr[i].name}</h5>
       <p class="card-text">${arr[i].house}</p>
-      <a href="#" class="btn btn-primary">Expell Student</a>
+      <a href="#" class="btn btn-primary" id="expel">Expel Student</a>
       </div>
     </div>
     `;
   }
   printToDom('#studentCards', domString)
+  // document.querySelector('#expel').addEventListener('click', expelEvent)
 }
+
+// const expelStudent = (arr) => {
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i].expelled === false) {
+//       arr[i].expelled = true;
+//     }
+//     if (arr[i].expelled === true) {
+//       deathEaters.push(arr[i])
+//     }
+//   }
+//   console.log(deathEaters)
+// }
 
 const clickEvents = () => {
   document.querySelector('#createForm').addEventListener('click', buildForm)
@@ -82,6 +97,10 @@ const enrollmentEvent = (event) => {
   studentObjectMaker()
   studentCardBuilder(students)
 }
+
+// const expelEvent = (event) => {
+//   expelStudent(students)
+// }
 
 const init = () => {
   clickEvents();
