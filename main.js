@@ -79,6 +79,7 @@ const studentCardBuilder = (arr) => {
   }
   printToDom('#studentCards', domString)
   // document.querySelector('#expel').addEventListener('click', expelEvent)
+  document.getElementById("name").value = "";
 }
 
 // const expelStudent = (arr) => {
