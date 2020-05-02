@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="main.css">
 </head>
 <body>
-  <h1>Sorting Hat</h1>
 
   <div class="jumbotron">
     <h1 class="display-4 text-center">Welcome to Hogwarts!</h1>
@@ -21,6 +20,18 @@
   </div>
 
   <div id="form"></div>
+
+  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <label class="btn btn-secondary active">
+      <input type="radio" name="options" id="option1" autocomplete="off" checked> Active
+    </label>
+    <label class="btn btn-secondary">
+      <input type="radio" name="options" id="option2" autocomplete="off"> Radio
+    </label>
+    <label class="btn btn-secondary">
+      <input type="radio" name="options" id="option3" autocomplete="off"> Radio
+    </label>
+  </div>
 
   <div id="container">
     <div id="studentCards"  class="d-flex flex-wrap justify-content-start"></div>

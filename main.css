@@ -1,8 +1,43 @@
 body {
-  background-color: cornflowerblue;
-  color: black;
+  background-color: rgba(37, 24, 5, 0.596);
+  background-image: url(https://bit.ly/3fj16mz);
+  background-position: center;
+  background-size: contain;
+  padding-bottom: 10%;
 }
 
 .card {
-  margin: 20px
+  margin: 20px;
+  text-align: center;
+}
+
+.card #Gryffindor {
+  background-color: rgb(235, 15, 59);
+}
+
+.card #Hufflepuff {
+  background-color: yellow;
+}
+
+.card #Ravenclaw {
+  background-color: rgb(33, 33, 172);
+  color: white;
+}
+
+.card #Slytherin {
+  background-color: rgb(12, 175, 12);
+  color:white;
+}
+
+.jumbotron {
+  background-color: wheat;
+  margin-top: 5%;
+}
+
+.label {
+  color: whitesmoke;
+}
+
+.form-text {
+  color: whitesmoke;
 }
