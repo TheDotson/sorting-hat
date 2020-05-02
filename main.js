@@ -89,8 +89,30 @@ const studentCardBuilder = (arr) => {
 //   console.log(deathEaters)
 // }
 
+const filterStudentEvent = (event) => {
+  const buttonId = event.target.id;
+  const tempStudentCollection = [];
+
+  if (buttonId === 'all') {
+    studentCardBuilder(students);
+    return;
+  }
+
+  for (let i = 0; i < students.length; i++) {
+    if (students[i].house === buttonId) {
+      tempStudentCollection.push(students[i]);
+    }
+  }
+  studentCardBuilder(tempStudentCollection);
+}
+
 const clickEvents = () => {
   document.querySelector('#createForm').addEventListener('click', buildForm)
+  document.querySelector('#Gryffindor').addEventListener('click', filterStudentEvent)
+  document.querySelector('#Hufflepuff').addEventListener('click', filterStudentEvent)
+  document.querySelector('#Ravenclaw').addEventListener('click', filterStudentEvent)
+  document.querySelector('#Slytherin').addEventListener('click', filterStudentEvent)
+  document.querySelector('#all').addEventListener('click', filterStudentEvent)
 }
 
 const enrollmentEvent = (event) => {
