@@ -1,8 +1,6 @@
 const students = [];
 const deathEaters = [];
 
-const house = ['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'];
-
 const printToDom = (selector, textToPrint) => {
   const selectedDiv = document.querySelector(selector);
   selectedDiv.innerHTML = textToPrint;
@@ -32,13 +30,15 @@ const studentObjectMaker = () => {
   let tempStudent = {
     name: '',
     house: '',
-    // expelled: false,
+    id: '',
+    expelled: false,
   }
 
   if (document.getElementById('name').value === "") {
     alert("Don't be shy, fill out your name.")
   } else {
     tempStudent.name = document.getElementById('name').value
+    tempStudent.id = `${document.getElementById('name').value+1}`
 
   const houseSorting = () => {
     let house = 0;
@@ -67,32 +67,24 @@ const studentCardBuilder = (arr) => {
   domString = '';
 
   for (let i = 0; i < arr.length; i++) {
-    domString += `
+
+    if (arr[i].expelled === false) {
+      domString += `
     <div class="card" style="width: 18rem;">
       <div class="card-body" id="${arr[i].house}">
-      <h5 class="card-title">${arr[i].name}</h5>
-      <p class="card-text">${arr[i].house}</p>
-      <a href="#" class="btn btn-primary" id="expel">Expel Student</a>
+        <h5 class="card-title">${arr[i].name}</h5>
+        <p class="card-text">${arr[i].house}</p>
+        <a href="#" class="btn btn-primary" id="expel">Expel Student</a>
       </div>
     </div>
     `;
+    }   
   }
   printToDom('#studentCards', domString)
-  // document.querySelector('#expel').addEventListener('click', expelEvent)
+  document.querySelector('#expel').addEventListener('click', expellStudentEvent)
   document.getElementById("name").value = "";
 }
 
-// const expelStudent = (arr) => {
-//   for (let i = 0; i < arr.length; i++) {
-//     if (arr[i].expelled === false) {
-//       arr[i].expelled = true;
-//     }
-//     if (arr[i].expelled === true) {
-//       deathEaters.push(arr[i])
-//     }
-//   }
-//   console.log(deathEaters)
-// }
 
 const filterStudentEvent = (event) => {
   const buttonId = event.target.id;
@@ -125,9 +117,22 @@ const enrollmentEvent = (event) => {
   studentCardBuilder(students)
 }
 
-// const expelEvent = (event) => {
-//   expelStudent(students)
-// }
+const expellStudent = (arr) => {  
+  const buttonId = event.target.id;
+  for (let i = 0; i < arr.length; i++) {
+    if (buttonId === 'expel') {
+      arr[i].expelled === true
+  };
+  }    
+  studentCardBuilder(students)
+}
+
+const expellStudentEvent = (event) => { 
+  const buttonId = event.target.id;
+    if (buttonId === 'expel') {
+      expellStudent(students);
+  }
+}
 
 const init = () => {
   clickEvents();
