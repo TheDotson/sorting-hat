@@ -30,7 +30,7 @@ const studentObjectMaker = () => {
   let tempStudent = {
     name: '',
     house: '',
-    id: '',
+    id: Math.floor(Math.random() * 100),
     expelled: false,
   }
 
@@ -38,7 +38,6 @@ const studentObjectMaker = () => {
     alert("Don't be shy, fill out your name.")
   } else {
     tempStudent.name = document.getElementById('name').value
-    tempStudent.id = `${document.getElementById('name').value+1}`
 
   const houseSorting = () => {
     let house = 0;
@@ -118,10 +117,9 @@ const enrollmentEvent = (event) => {
 }
 
 const expellStudent = (arr) => {  
-  const buttonId = event.target.id;
   for (let i = 0; i < arr.length; i++) {
-    if (buttonId === 'expel') {
-      arr[i].expelled === true
+    if (arr[i].id > 0) {
+      arr[i].expelled = true
   };
   }    
   studentCardBuilder(students)
