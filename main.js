@@ -73,14 +73,14 @@ const studentCardBuilder = (arr) => {
       <div class="card-body" id="${arr[i].house}">
         <h5 class="card-title">${arr[i].name}</h5>
         <p class="card-text">${arr[i].house}</p>
-        <a href="#" class="btn btn-primary" id="expel">Expel Student</a>
+        <a href="#" class="btn btn-primary" id="${arr[i].id}">Expel Student</a>
       </div>
     </div>
     `;
     }   
   }
   printToDom('#studentCards', domString)
-  document.querySelector('#expel').addEventListener('click', expellStudentEvent)
+  document.querySelector(`#${arr[i].id}`).addEventListener('click', expellStudentEvent)
   document.getElementById("name").value = "";
 }
 
